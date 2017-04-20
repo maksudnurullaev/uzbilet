@@ -1,0 +1,7 @@
+# checkbox buttons examples
+http://bootsnipp.com/snippets/featured/jquery-checkbox-buttons
+
+=== TASKS ===
+1. Clone to local notebook uzbilet project
+2. Test project template in local notebook
+
