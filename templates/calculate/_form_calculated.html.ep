@@ -1,0 +1,20 @@
+% use Utils::Credits ;
+% for my $_months (@{$Utils::Credits::Months}) {
+%= tag 'div', class => "col-lg-6" => begin 
+ %= tag 'div', class => "panel panel-default" => begin
+  %= tag 'div', class => "panel-heading" => begin
+  <%= ml 'Credit period' %>: <u><%= $_months %> <%= $_months <= 5 ? ml 'Month' : ml 'Months' %></u>
+  % end
+  % my $_credit = calculate_credit(stash('creditAmount'),$_months) ;
+  %= tag 'div', class => "panel-body" => begin
+  <%= ml 'An initial fee' %>: <strong><%= currency_format $_credit->{pay_first} %></strong>
+  %== '<br />';
+  <%= ml 'Monthly payments' %>: <strong><%= currency_format $_credit->{pay_monthly} %></strong>
+  % end
+  %= tag 'div', class => "panel-footer" => begin
+  %= link_to ml('Select') => url_for('/calculate/selected')->query(creditAmount => param('creditAmount'), months => $_months) => ( class => 'btn btn-primary btn-sm' ) ; 
+  % end
+ % end
+% end
+% }
+

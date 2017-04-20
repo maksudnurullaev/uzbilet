@@ -1,0 +1,6 @@
+<div class="alert alert-info" role="alert">
+ %= mlm 'rus', 'Calculate header tip' => begin
+<strong>Внимание!</strong> Введите сумму кредита, к примеру, <u>5 000 000</u> сум, которую вы хотели бы получить.
+ % end
+</div>
+

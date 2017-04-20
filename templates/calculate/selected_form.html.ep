@@ -1,0 +1,23 @@
+%= form_for url_with->path_query => ( method => 'POST' ) => begin
+ % my $_class = stash('formWithError') ? ' has-error' : '' ;
+  %= tag div => class => "form-group $_class" => begin
+    <label for="client_name"><%= ml 'Your name' %></label>
+    %= input_tag 'client_name', type=>"text", class=>"form-control", id=>"client_name", placeholder=>ml('Your name')
+  % end 
+  %= tag div => class => "form-group $_class" => begin
+    <label for="client_phone"><%= ml 'Your phone' %></label>
+    <div class="input-group">
+      <div class="input-group-addon">+998</div>
+      %= input_tag client_phone => type => "number", class => 'form-control', id => "client_phone", placeholder => ml('Your phone') ;
+    </div>
+  % end 
+  <button type="submit" class="btn btn-primary"><%= ml 'Select' %></button>
+  %= link_to ml('Back') => url_for(action => 'start')->query(creditAmount => param('creditAmount')) => ( class => 'btn btn-default' ) ; 
+% end
+
+<small>
+ %= mlm 'rus', 'Agreement' => begin
+Нажимая кнопку «Выбрать», Вы принимаете условия <a href="/agreement">Пользовательского соглашения</a>.
+ % end
+</small>
+

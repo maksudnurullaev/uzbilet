@@ -1,0 +1,22 @@
+    <!-- All sizes -->
+    <span class="button-checkbox">
+        <button type="button" class="btn btn-xs" data-color="danger" disabled="disabled">10</button>
+        <input type="checkbox" class="hidden" checked disabled="disabled"/>
+    </span>
+    <span class="button-checkbox">
+        <button type="button" class="btn btn-xs" data-color="primary">11</button>
+        <input type="checkbox" class="hidden" checked />
+    </span>
+    <span class="button-checkbox">
+        <button type="button" class="btn btn-xs" data-color="primary">12</button>
+        <input type="checkbox" class="hidden" />
+    </span>
+    <span class="button-checkbox">
+        <button type="button" class="btn btn-xs" data-color="success">13</button>
+        <input type="checkbox" class="hidden" />
+    </span>
+    <span class="button-checkbox">
+        <button type="button" class="btn btn-xs" data-color="primary" disabled="disabled">14</button>
+        <input type="checkbox" class="hidden" checked disabled="disabled"/>
+    </span>
+

@@ -1,0 +1,6 @@
+% layout 'default';
+
+<div class="container" style="margin-bottom: 15px">
+%= include 'calculate/selected_header' ;
+%= include 'calculate/selected_form' ;
+</div> 

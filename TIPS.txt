@@ -1,0 +1,2 @@
+# checkbox buttons examples
+http://bootsnipp.com/snippets/featured/jquery-checkbox-buttons

@@ -1,0 +1,37 @@
+<div class="container"><nav class="navbar navbar-default">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sumov-net-main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">UZBilet.Com</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="sumov-net-main-navbar">
+      <ul class="nav navbar-nav">
+        % my $_menus = $Utils::Initial::DEFAULT_MENUS ;
+        % for (sort keys %{$_menus}) {
+         % my $_link_name = ml $_menus->{$_}[0];
+         % my $_link_link = scalar(@{$_menus->{$_}}) > 1 ? $_menus->{$_}[1] : lc($_menus->{$_}[0]); 
+         %= tag li => (class => ($_link_link eq stash('controller') && stash('action') eq 'start' ? 'active' : '')) => (link_to $_link_name => "/$_link_link" ) ;
+        % }
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= ucfirst languages_current %><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           % my $_lang  = languages_current ;
+           % my $_langs = $Utils::Languages::DEFAULT_LANGS ;
+           % for (keys %{$_langs}) {
+            %= tag li => link_to( ucfirst($_) => "/initial/language/$_" ) if $_lang ne $_ ;
+           % }
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav></div>
+

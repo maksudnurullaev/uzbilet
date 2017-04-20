@@ -1,0 +1,18 @@
+ % my $_months = param('months') ;
+ % my $_creditAmount = param('creditAmount') ;
+ %= tag 'div', class => "panel panel-default" => begin
+  %= tag 'div', class => "panel-heading" => begin
+  <%= ml 'Credit period' %>: <u><%= $_months %> <%= $_months <= 5 ? ml 'Month' : ml 'Months' %></u>
+  % end
+  % my $_credit = calculate_credit($_creditAmount,$_months) ;
+  %= tag 'div', class => "panel-body" => begin
+  <table class="table"><tr><td>
+  <%= ml 'Credit amount' %></td><td><strong><%= currency_format $_credit->{creditAmount} %></strong>
+  </td></tr><tr><td>
+  <%= ml 'An initial fee' %></td><td><strong><%= currency_format $_credit->{pay_first} %></strong>
+  </td></tr><tr><td>
+  <%= ml 'Monthly payments' %></td><td><strong><%= currency_format $_credit->{pay_monthly} %></strong>
+  </td></tr></table>
+  % end
+ % end
+

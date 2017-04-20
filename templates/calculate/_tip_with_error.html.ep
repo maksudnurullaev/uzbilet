@@ -1,0 +1,10 @@
+<div class="alert alert-warning" role="alert">
+ %= mlm 'rus', 'Calculate footer tip error' => begin
+<strong>Внимание!</strong> Ошибка ввода, не правильная или некорректная сумма кредита.
+ % end
+<br />
+ %= mlm 'rus', 'Calculate header tip' => begin
+<strong>Внимание!</strong> Введите сумму кредита, к примеру, <u>5 000 000</u> сум, которую вы хотели бы получить.
+ % end
+</div>
+

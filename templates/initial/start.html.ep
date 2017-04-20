@@ -1,0 +1,7 @@
+% layout 'default';
+
+<div class="container">
+ %= include 'tests/test2' ;
+ %= include 'tests/test2' ;
+ %= include 'tests/test2' ;
+</div>

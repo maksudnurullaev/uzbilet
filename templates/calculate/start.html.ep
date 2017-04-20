@@ -1,0 +1,16 @@
+% layout 'default';
+
+
+<div class="container" style="margin-bottom: 15px">
+ %= include 'calculate/_form_main' ; 
+
+ % if( stash('formWithError') ){
+  %= include 'calculate/_tip_with_error' ; 
+ % } elsif( stash('creditAmount') ) {
+  %= include 'calculate/_form_calculated' ; 
+ % } else {
+  %= include 'calculate/_tip' ; 
+ % }
+</div>
+
+%#= tag pre => dumper(stash)
