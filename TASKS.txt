@@ -2,9 +2,10 @@
 http://bootsnipp.com/snippets/featured/jquery-checkbox-buttons
 
 === TASKS ===
-1. Clone to local notebook uzbilet project
-2. Test project template in local notebook
-3. Describe data schema
+1. Initial Admin page
+2. Initial Cinemas (static part)
+3. Initial Halls (dinamic part)
+4. Initial Sectors with rows (dinamic part)
 
 == Data schema, Cinema  ==
 1. Сinema has 1 or more Halls
