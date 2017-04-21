@@ -4,4 +4,16 @@ http://bootsnipp.com/snippets/featured/jquery-checkbox-buttons
 === TASKS ===
 1. Clone to local notebook uzbilet project
 2. Test project template in local notebook
+3. Describe data schema
 
+== Data schema, Cinema  ==
+1. Сinema has 1 or more Halls
+2. Hall   has 1 or more Sectors
+3. Sector has 1 or more Rows
+4. Row    has 1 or more Places
+
+== Data schema, Movies ==
+1. Movie  showen in 1 or more Cinema
+2. Cinema shows  in 1 or more Movies
+
+ 

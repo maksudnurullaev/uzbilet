@@ -1,5 +1,5 @@
 % layout 'default';
 
 <div class="container">
-%= tag h1 => stash('controller') 
+ %= include 'cabinet/login' ;
 </div>

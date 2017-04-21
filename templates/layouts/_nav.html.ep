@@ -15,9 +15,9 @@
     <div class="collapse navbar-collapse" id="sumov-net-main-navbar">
       <ul class="nav navbar-nav">
         % my $_menus = $Utils::Initial::DEFAULT_MENUS ;
-        % for (sort keys %{$_menus}) {
-         % my $_link_name = ml $_menus->{$_}[0];
-         % my $_link_link = scalar(@{$_menus->{$_}}) > 1 ? $_menus->{$_}[1] : lc($_menus->{$_}[0]); 
+        % for my $_key (sort keys %{$_menus}) {
+         % my $_link_name = ml $_menus->{$_key}[0];
+         % my $_link_link = scalar(@{$_menus->{$_key}}) > 1 ? $_menus->{$_key}[1] : lc($_menus->{$_key}[0]); 
          %= tag li => (class => ($_link_link eq stash('controller') && stash('action') eq 'start' ? 'active' : '')) => (link_to $_link_name => "/$_link_link" ) ;
         % }
         <li class="dropdown">

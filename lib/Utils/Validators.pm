@@ -9,10 +9,37 @@ use 5.012000;
 use strict;
 use warnings;
 use utf8;
+use Crypt::SaltedHash;
+use Utils::Initial;
 use Data::Dumper ;
 
-use Utils::Credits;
+sub login_stage1_validate_fields{
+    my $self = shift;
+    my ($client_phone, $client_password) = ($self->param('client_phone'),$self->param('client_password'));
 
+    if( $client_phone !~ /^\d{9}$/
+        || !stringVal($client_password) ){
+        $self->stash( {formWithError => 1} ) ;
+        return(0);
+    }
+    return(1);
+};
+
+sub login_stage2_check_account{
+    my $self = shift;
+    my ($client_phone, $client_password) = ($self->param('client_phone'),$self->param('client_password'));
+
+    # 1 - stage, check in default roles
+    my $_default_roles = $Utils::Initial::DEFAULT_ROLES;
+    if( exists($_default_roles->{$client_phone}) 
+            && Crypt::SaltedHash->validate($_default_roles->{$client_phone}->{salt}, "$client_phone$client_password") ) {
+        return({ client_phone => $client_phone, client_role => $_default_roles->{$client_phone}->{role}});
+        return(1);
+    }
+    return(0)
+};
+
+# OLD 
 sub creditMonths{
     my $months = shift;
     $months =~ s/[\D\s]//g ;

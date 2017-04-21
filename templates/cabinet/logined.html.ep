@@ -1,0 +1,2 @@
+%= link_to ml('Logout') => url_for(action => 'logout')->query(creditAmount => param('creditAmount')) => ( class => 'btn btn-default' ) ;
+
