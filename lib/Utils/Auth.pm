@@ -19,6 +19,11 @@ sub set_login_session{
 
 sub unset_login_session{ shift->session(expires => 1); };
 
+sub is_authorized{
+    my $self = shift;
+    return( $self->session('client_role') ? 1 : 0 );
+};
+
 # END OF PACKAGE
 };
 

@@ -1,9 +1,0 @@
-<p>
- %= link_to ml('Logout') => url_for(action => 'logout')->query(creditAmount => param('creditAmount')) => ( class => 'btn btn-default' ) ;
-</p>
-<ul class="nav nav-pills">
-    <li role="presentation" class="active"><a href="#">Home </a> <span class="badge">4</span></li>
-        <li role="presentation"><a href="#">Profile</a></li>
-          <li role="presentation"><a href="#">Messages</a></li>
-</ul>
-
