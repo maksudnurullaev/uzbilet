@@ -10,7 +10,6 @@ use strict;
 use warnings;
 use utf8;
 
-our $DEFAULT_MENUS = { 1 => ['Home', 'initial'] , 2 => ['Cabinet']};
 our $DEFAULT_ROLES = { 977670601 => { role => 'admin', salt => '{SSHA}AtesuTJyKPXZQ4VF/rwiY+ElECmNmSn8' }};
 
 # END OF PACKAGE

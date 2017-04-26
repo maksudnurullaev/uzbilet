@@ -1,0 +1,21 @@
+% my $_controller = stash 'controller';
+% my $_class = $_controller eq 'cabinet' ? "dropdown active" : "dropdown" ;
+%= tag li => ( class => $_class ) => begin
+ <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= ml('Cabinet') %><span class="caret"></span></a>
+ <ul class="dropdown-menu">
+  <li>
+   %= link_to url_for('/orgs') => begin
+    %= ml('Organizations') ;
+    %= tag span => (class => 'badge') => 12 ;
+   % end
+  </li>
+  <li>
+   %= link_to url_for('/opers') => begin
+    %= ml('Operators') ;
+    %= tag span => (class => 'badge') => 23 ;
+   % end
+  </li>
+  <li role="separator" class="divider"></li>
+  <li><%= link_to ml('Logout') => url_for('/cabinet/logout') %></li>
+ </ul>
+% end
