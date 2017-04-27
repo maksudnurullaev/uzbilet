@@ -1,0 +1,7 @@
+% layout 'default';
+
+<!-- breadcrumb -->
+<ol class="breadcrumb">
+  <li class="active"><%= ml 'Operators' %></li>
+  <li><a href="/opers/add"><%= ml 'Add' %></a></li>
+</ol>

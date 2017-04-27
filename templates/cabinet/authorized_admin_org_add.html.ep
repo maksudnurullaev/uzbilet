@@ -1,6 +1,0 @@
-%= link_to ml('Back') => url_with->query([tab => 'orgs']) => ( class => 'btn btn-default btn-xs' ) ;
-<form class="form-horizontal">
-    <input type="text" class="form-control" placeholder="Text input">
-    <textarea class="form-control" rows="3"></textarea>
-</form>
-

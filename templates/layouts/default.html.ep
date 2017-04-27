@@ -21,7 +21,9 @@
   </head> 
   <body>
    %= include 'layouts/_nav' ;
-   %= content ;
+   <div class="container">
+    %= content ;
+   </div>   
    %= include 'layouts/_footer' ;
    <!-- Bootstrap core JavaScript
    ================================================== -->

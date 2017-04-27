@@ -1,0 +1,7 @@
+  <li>
+   %= link_to url_for($_link) => begin
+    %= ml($_name) ;
+    %= tag span => (class => 'badge') => $_badge if $_badge;
+   % end
+  </li>
+

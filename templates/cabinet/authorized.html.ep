@@ -2,30 +2,5 @@
 % my $_role = session 'client_role';
 
 <div class="container">
-
-%= include ("cabinet/authorized/$_role/toolbar");
-
-<hr />
-% my $_tabs = { tab1 => { name => 'Organizations', tab => 'orgs', counts => 5 }, 
-%               tab2 => { name => 'Operators', tab => 'opers', counts => 6 } };
-% my $_tab  = param('tab') || $_tabs->{tab1}{tab};
-
-<!-- ul class="nav nav-pills" -->
-<ul class="nav nav-tabs">
-    % for my $_key (sort keys %{$_tabs} ){
-     %= tag li => (role => 'presentation', class => ($_tab eq $_tabs->{$_key}{tab}?'active':'')) => begin
-      %= link_to url_with->query([tab =>  $_tabs->{$_key}{tab}]) => begin
-       %= ml( $_tabs->{$_key}{'name'} ) ;
-       %= tag span => (class => 'badge') => $_tabs->{$_key}{counts} ;
-      % end
-     % end
-    % }
-</ul>
-
-% if ( param('action') ) {
- %= include 'cabinet/authorized_' . $_role . '_' . $_tab . '_' . param('action') ;
- %= 'cabinet/authorized_' . $_role . '_' . $_tab . '_' . param('action') ;
-% } else {
- %= include 'cabinet/authorized_' . $_role . '_' . $_tab ;
-% }
+ %= tag h1 => 'TODO' ;
 </div>

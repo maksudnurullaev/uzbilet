@@ -1,1 +1,0 @@
-%= tag h1 => param('tab') ;

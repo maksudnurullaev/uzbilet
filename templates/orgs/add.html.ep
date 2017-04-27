@@ -1,0 +1,13 @@
+% layout 'default';
+
+<ol class="breadcrumb">
+  <li><a href="/orgs"><%= ml 'Organizations' %></a></li>
+  <li class="active"><%= ml 'Add' %></li>
+</ol>
+
+%= link_to ml('Back') => url_for( controller => 'orgs') => ( class => 'btn btn-default btn-xs' ) ;
+<form class="form-horizontal">
+    <input type="text" class="form-control" placeholder="Text input">
+    <textarea class="form-control" rows="3"></textarea>
+</form>
+

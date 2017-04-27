@@ -3,17 +3,10 @@
 %= tag li => ( class => $_class ) => begin
  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= ml('Cabinet') %><span class="caret"></span></a>
  <ul class="dropdown-menu">
-  <li>
-   %= link_to url_for('/orgs') => begin
-    %= ml('Organizations') ;
-    %= tag span => (class => 'badge') => 12 ;
-   % end
-  </li>
-  <li>
-   %= link_to url_for('/opers') => begin
-    %= ml('Operators') ;
-    %= tag span => (class => 'badge') => 23 ;
-   % end
+  %= include 'layouts/_nav_dropmenu_li', _link => '/cabinet', _name => 'Personal', _badge => 0 ;
+  <li role="separator" class="divider"></li>
+  %= include 'layouts/_nav_dropmenu_li', _link => '/orgs', _name => 'Organizations', _badge => 2 ;
+  %= include 'layouts/_nav_dropmenu_li', _link => '/opers', _name => 'Operators', _badge => 4 ;
   </li>
   <li role="separator" class="divider"></li>
   <li><%= link_to ml('Logout') => url_for('/cabinet/logout') %></li>
