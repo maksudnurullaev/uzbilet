@@ -5,9 +5,26 @@
   <li class="active"><%= ml 'Add' %></li>
 </ol>
 
-%= link_to ml('Back') => url_for( controller => 'orgs') => ( class => 'btn btn-default btn-xs' ) ;
-<form class="form-horizontal">
-    <input type="text" class="form-control" placeholder="Text input">
-    <textarea class="form-control" rows="3"></textarea>
-</form>
+%# CLIENT INFORMATION FORM
+%= form_for url_with->path_query => ( method => 'POST', style => 'margin-bottom: 10px;' ) => begin
+ % my $_class = stash('formWithError') ? ' has-error' : '' ;
+  %= tag div => class => "form-group $_class" => begin
+    <label for="name"><%= ml 'Name' %></label>
+    %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name')
+  % end 
+  %= tag div => class => "form-group $_class" => begin
+    <label for="org_type"><%= ml 'Organization type' %></label>
+    %= include 'utils/select_org_types';
+  % end 
+  %= tag div => class => "form-group $_class" => begin
+    <label for="city"><%= ml 'City' %></label>
+    %= include 'utils/select_cities';
+  % end 
+  %= tag div => class => "form-group $_class" => begin
+    <label for="description"><%= ml 'Description' %></label>
+    %= text_area description => (class=>'form-control') 
+  % end 
+  <button type="submit" class="btn btn-primary"><%= ml 'Add' %></button>
+  %= link_to ml('Back') => url_for(action => 'start')->query(creditAmount => param('creditAmount')) => ( class => 'btn btn-default' ) ; 
+% end
 

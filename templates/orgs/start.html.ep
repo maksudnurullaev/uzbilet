@@ -36,5 +36,3 @@
       </tr>
    </tbody>
 </table>
-
-%= tag pre => dumper(session) ;

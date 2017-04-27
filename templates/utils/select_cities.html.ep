@@ -1,0 +1,4 @@
+<select class="form-control" name="city" id="city">
+ <option>Tashkent</option>
+</select>
+
