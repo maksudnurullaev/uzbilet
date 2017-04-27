@@ -12,15 +12,15 @@
     <label for="name"><%= ml 'Name' %></label>
     %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name')
   % end 
-  %= tag div => class => "form-group $_class" => begin
+  %= tag div => class => "form-group" => begin
     <label for="org_type"><%= ml 'Organization type' %></label>
     %= include 'utils/select_org_types';
   % end 
-  %= tag div => class => "form-group $_class" => begin
+  %= tag div => class => "form-group" => begin
     <label for="city"><%= ml 'City' %></label>
     %= include 'utils/select_cities';
   % end 
-  %= tag div => class => "form-group $_class" => begin
+  %= tag div => class => "form-group" => begin
     <label for="description"><%= ml 'Description' %></label>
     %= text_area description => (class=>'form-control') 
   % end 
