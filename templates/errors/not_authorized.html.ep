@@ -1,0 +1,8 @@
+% layout 'default';
+
+<div class="alert alert-danger" role="alert">
+  <strong><%= ml 'Access denied' %>!</strong>
+</div>
+
+
+

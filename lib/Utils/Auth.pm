@@ -11,6 +11,13 @@ use warnings;
 use utf8;
 use Crypt::SaltedHash;
 
+sub has_role{
+    my ($self,$role) = @_;
+    return 1 if $self->session('client_role') eq $role;
+    $self->redirect_to('/errors/not_authorized');
+    return undef;
+};
+
 sub set_login_session{
     my ($self,$login) = @_;
     for my $key (keys %{$login} ){

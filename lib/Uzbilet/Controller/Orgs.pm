@@ -3,9 +3,17 @@ use Mojo::Base 'Mojolicious::Controller';
 
 use Data::Dumper;
 use Db;
+use Utils::Auth;
+
+sub start{
+    my $self = shift;
+	return if Utils::Auth::has_role($self,'admin');
+
+};
 
 sub add{
     my $self = shift;
+	return if Utils::Auth::has_role($self,'admin');
     return if $self->req->method ne 'POST' ;
 
     my $validation = $self->validation;
