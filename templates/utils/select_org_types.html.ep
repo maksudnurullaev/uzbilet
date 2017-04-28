@@ -1,6 +1,6 @@
 <select class="form-control" name="org_type" id="org_type">
- <option>Кинотеатр</option>
- <option>Театр</option>
- <option>Оперный театр</option>
+ <option value="Cinema">Кинотеатр</option>
+ <option value="Theater">Театр</option>
+ <option value="Opera Theatre">Оперный театр</option>
 </select>
 

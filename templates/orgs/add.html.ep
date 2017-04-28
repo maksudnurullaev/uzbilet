@@ -5,9 +5,12 @@
   <li class="active"><%= ml 'Add' %></li>
 </ol>
 
+% my $_has_error = stash('formWithError') ? 1 : 0;
+%= include 'utils/alert_error_dismissible' if $_has_error;
+
 %# CLIENT INFORMATION FORM
 %= form_for url_with->path_query => ( method => 'POST', style => 'margin-bottom: 10px;' ) => begin
- % my $_class = stash('formWithError') ? ' has-error' : '' ;
+ % my $_class = $_has_error ? ' has-error' : '' ;
   %= tag div => class => "form-group $_class" => begin
     <label for="name"><%= ml 'Name' %></label>
     %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name')

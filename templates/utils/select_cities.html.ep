@@ -1,4 +1,4 @@
 <select class="form-control" name="city" id="city">
- <option>Tashkent</option>
+ <option value="Tashkent">Ташкент</option>
 </select>
 

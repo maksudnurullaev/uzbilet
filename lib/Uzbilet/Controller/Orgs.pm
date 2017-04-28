@@ -16,10 +16,10 @@ sub add{
     if( $validation->has_error ){
         say for @{$validation->failed};
 		$self->stash(formWithError => 1);
+        return;
     }
 
-    say $self->param('name');
-    say $self->param('description');
+	say Dumper $self->req->params->to_hash ;
 };
 
 1;
