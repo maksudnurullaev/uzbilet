@@ -17,7 +17,6 @@ sub add{
     if( $validation->has_error ){
         #TODO remove late - say for @{$validation->failed};
 		$self->stash(formWithError => 1);
-		$self->stash(internalError => 1);
         return;
     }
 
