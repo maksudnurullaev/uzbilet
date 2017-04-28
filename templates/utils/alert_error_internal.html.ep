@@ -1,0 +1,5 @@
+<div class="alert alert-danger" role="alert">
+  <strong><%= ml 'Error' %>!</strong><!-- Проверьте правильность заполниения -->
+</div>
+
+

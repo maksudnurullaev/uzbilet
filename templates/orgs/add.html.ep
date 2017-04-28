@@ -7,6 +7,7 @@
 
 % my $_has_error = stash('formWithError') ? 1 : 0;
 %= include 'utils/alert_error_dismissible' if $_has_error;
+%= include 'utils/alert_error_internal'    if stash('internalError');
 
 %# CLIENT INFORMATION FORM
 %= form_for url_with->path_query => ( method => 'POST', style => 'margin-bottom: 10px;' ) => begin
