@@ -7,13 +7,16 @@ use Utils::Auth;
 
 sub start{
     my $self = shift;
-	return if Utils::Auth::has_role($self,'admin');
+	return if !Utils::Auth::has_role($self,'admin');
 
+    my $dbh = Db->new($self);
+    my $orgs = $dbh->get_objects({ name => ['organization']});
+    $self->stash(orgs => $orgs);
 };
 
 sub add{
     my $self = shift;
-	return if Utils::Auth::has_role($self,'admin');
+	return if !Utils::Auth::has_role($self,'admin');
     return if $self->req->method ne 'POST' ;
 
     my $validation = $self->validation;
