@@ -2,32 +2,38 @@
 
 <ol class="breadcrumb">
   <li><a href="/orgs"><%= ml 'Organizations' %></a></li>
-  <li class="active"><%= ml 'Add' %></li>
+  <li class="active"><%= ml 'Edit' %></li>
 </ol>
 
 % my $_has_error = stash('formWithError') ? 1 : 0;
 %= include 'utils/alert_error_dismissible' if $_has_error;
 %= include 'utils/alert_error_internal'    if stash('internalError');
+%= include 'utils/alert_action_success'    if stash('actionSuccess');
+% my $id  = param('payload');
+% my $org = stash('org')->{$id};;
 
 %# CLIENT INFORMATION FORM
 %= form_for url_with->path_query => ( method => 'POST', style => 'margin-bottom: 10px;' ) => begin
  % my $_class = $_has_error ? ' has-error' : '' ;
   %= tag div => class => "form-group $_class" => begin
     <label for="name"><%= ml 'Name' %></label>
-    %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name')
+    %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name'), value => $org->{name} ;
+    %= input_tag 'id', type=>"hidden", class=>"form-control", id=>"id", value => $org->{id} ;
   % end 
   %= tag div => class => "form-group" => begin
     <label for="org_type"><%= ml 'Organization type' %></label>
-    %= include 'utils/select_org_types', org_type => undef;
+    %= include 'utils/select_org_types', org_type => $org->{org_type};
   % end 
   %= tag div => class => "form-group" => begin
     <label for="city"><%= ml 'City' %></label>
-    %= include 'utils/select_cities', city => undef;
+    %= include 'utils/select_cities', city => $org->{city};
   % end 
   %= tag div => class => "form-group" => begin
     <label for="description"><%= ml 'Description' %></label>
-    %= text_area description => (class=>'form-control') 
+    %= text_area description => $org->{description}, (class=>'form-control');
   % end 
-  <button type="submit" class="btn btn-primary"><%= ml 'Add' %></button>
+  <button type="submit" class="btn btn-primary"><%= ml 'Edit' %></button>
   %= link_to ml('Back') => url_for("/orgs") => ( class => 'btn btn-default' ) ; 
 % end
+
+%#= tag pre => dumper(stash('org'));

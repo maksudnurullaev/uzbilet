@@ -1,4 +1,13 @@
+% my $s8s = { s1 => { v => 'Tashkent', n => 'Ташкент' }, 
+%             s2 => { v => 'Samarkand', n => 'Самарканд' }};
+ 
 <select class="form-control" name="city" id="city">
- <option value="Tashkent">Ташкент</option>
+    % for my $key (sort keys %{$s8s}){
+     % if( $city eq $s8s->{$key}{v} ) {
+     %= tag 'option' => ( selected => 'selected', value => $s8s->{$key}{v} ) =>  $s8s->{$key}{n} ;  
+     % } else {
+     %= tag 'option' => ( value => $s8s->{$key}{v} ) =>  $s8s->{$key}{n} ;  
+     % } 
+    % }    
 </select>
 

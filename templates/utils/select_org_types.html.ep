@@ -1,6 +1,14 @@
+% my $s8s = { s1 => { v => 'Cinema', n => "Кинотеатр" }, 
+%             s2 => { v => 'Theater', n => 'Театр' }, 
+%             s3 => { v => 'Opera Theatre', n => 'Оперный театр' }};
+ 
 <select class="form-control" name="org_type" id="org_type">
- <option value="Cinema">Кинотеатр</option>
- <option value="Theater">Театр</option>
- <option value="Opera Theatre">Оперный театр</option>
+    % for my $key (sort keys %{$s8s}){
+     % if( $org_type eq $s8s->{$key}{v} ) {
+     %= tag 'option' => ( selected => 'selected', value => $s8s->{$key}{v} ) =>  $s8s->{$key}{n} ;  
+     % } else {
+     %= tag 'option' => ( value => $s8s->{$key}{v} ) =>  $s8s->{$key}{n} ;  
+     % } 
+    % }    
 </select>
 
