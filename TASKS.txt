@@ -7,6 +7,7 @@ http://bootsnipp.com/snippets/featured/jquery-checkbox-buttons
 3. Initial Halls (dinamic part)
 4. Initial Sectors with rows (dinamic part)
 5. Set empty warning page if noscript detected in browser
+6. Set new LOCKED properties for db objects like organization & operator
 
 == Data schema, Cinema  ==
 1. Сinema has 1 or more Halls

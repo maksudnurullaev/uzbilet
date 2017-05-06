@@ -5,3 +5,24 @@
   <li class="active"><%= ml 'Operators' %></li>
   <li><a href="/opers/add"><%= ml 'Add' %></a></li>
 </ol>
+
+%= tag pre => dumper(stash('opers'));
+% my $objects = stash('opers');
+
+<table class="table table-hover">
+ <thead>
+  <tr>
+   <th><%= ml 'Name' %></th>
+   <th><%= ml 'Phone' %></th>
+  </tr>
+ </thead>
+ <tbody>
+ <!-- iteration of orgs -->
+ % for my $id(reverse sort keys %{$objects}) {
+  <tr>
+   <td><%= link_to $objects->{$id}{name} => url_for("/opers/edit/$id") %></td>
+   <td><%= $objects->{$id}{phone} %></td>
+  </tr>
+ % }    
+ </tbody>
+</table>

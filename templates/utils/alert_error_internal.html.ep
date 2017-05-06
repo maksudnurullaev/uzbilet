@@ -1,5 +1,4 @@
-<div class="alert alert-success" role="alert">
-  <strong>Ok!</strong><!-- Проверьте правильность заполниения -->
+<div class="alert alert-danger" role="alert">
+ <strong><%= ml 'Error' %>!</strong><!-- Проверьте правильность заполниения -->
 </div>
-
 

@@ -8,7 +8,6 @@
 
 <!-- table, list of organizations -->
 % my $orgs = stash('orgs') ;
-%#= tag pre => dumper($orgs);
 
 <table class="table table-hover">
  <thead>

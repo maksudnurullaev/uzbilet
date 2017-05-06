@@ -1,6 +1,7 @@
 % layout 'default';
 
 <div class="container">
+%= include 'utils/alert_error_internal'    if stash('internalError');
 
 %= form_for url_with->path_query => ( method => 'POST', style => 'margin-bottom: 15px' ) => begin
  % my $_class = stash('formWithError') ? ' has-error' : '' ;

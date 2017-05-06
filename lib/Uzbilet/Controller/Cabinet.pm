@@ -19,6 +19,8 @@ sub start{
         (my $login = Utils::Validators::login_stage2_check_account($self)) ) {
         Utils::Auth::set_login_session($self, $login);
         $self->redirect_to('/cabinet/authorized');
+    } else {
+		$self->stash(internalError => 1);
     }
 };
 
