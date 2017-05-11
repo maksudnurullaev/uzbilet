@@ -10,27 +10,27 @@
 %= include 'utils/alert_error_internal'    if stash('internalError');
 %= include 'utils/alert_action_success'    if stash('actionSuccess');
 % my $id  = param('payload');
-% my $object = stash('object')->{$id};;
+% my $object = stash('object')->{$id};
 
 %# CLIENT INFORMATION FORM
 %= form_for url_with->path_query => ( method => 'POST', style => 'margin-bottom: 10px;' ) => begin
  % my $_class = $_has_error ? ' has-error' : '' ;
   %= tag div => class => "form-group $_class" => begin
     <label for="name"><%= ml 'Name' %></label>
-    %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name'), value => $org->{name} ;
-    %= input_tag 'id', type=>"hidden", class=>"form-control", id=>"id", value => $org->{id} ;
+    %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name'), value => $object->{name} ;
+    %= input_tag 'id', type=>"hidden", class=>"form-control", id=>"id", value => $object->{id} ;
   % end 
   %= tag div => class => "form-group" => begin
     <label for="org_type"><%= ml 'Organization type' %></label>
-    %= include 'utils/select_org_types', org_type => $org->{org_type};
+    %= include 'utils/select_org_types', org_type => $object->{org_type};
   % end 
   %= tag div => class => "form-group" => begin
     <label for="city"><%= ml 'City' %></label>
-    %= include 'utils/select_cities', city => $org->{city};
+    %= include 'utils/select_cities', city => $object->{city};
   % end 
   %= tag div => class => "form-group" => begin
     <label for="description"><%= ml 'Description' %></label>
-    %= text_area description => $org->{description}, (class=>'form-control');
+    %= text_area description => $object->{description}, (class=>'form-control');
   % end 
   <button type="submit" class="btn btn-primary"><%= ml 'Edit' %></button>
   %= link_to ml('Back') => url_for("/orgs") => ( class => 'btn btn-default' ) ; 

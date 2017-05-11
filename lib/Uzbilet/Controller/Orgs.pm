@@ -9,7 +9,7 @@ sub start{
     my $self = shift;
 	return if !Utils::Auth::has_role($self,'admin');
 
-    $self->stash(orgs => Utils::Orgs::get_orgs($self));
+    $self->stash(orgs => Utils::Orgs::get_many($self));
 };
 
 sub add{
@@ -17,59 +17,19 @@ sub add{
 	return if !Utils::Auth::has_role($self,'admin');
     return if $self->req->method ne 'POST' ;
 
-    my $validation = $self->validation;
-    $validation->required('name')->size(4,35);
-    $validation->required('org_type');
-    $validation->required('city');
-    $validation->optional('description','trim');
-
-    if( $validation->has_error ){
-		$self->stash(formWithError => 1);
-        return;
-    }
-
-	my $dbh = Db->new($self);
-	
-	my $new_record = $self->req->params->to_hash;
-	$new_record->{object_name} = 'organization';
-    
-	if( $dbh->insert($new_record) ){
-		$self->redirect_to("/orgs/");
-	} else {
-		$self->stash(internalError => 1);
-	}
+    Utils::Orgs::add($self) if !Utils::Orgs::has_error($self);
 };
   
 sub edit{
     my $self = shift;
 	return if !Utils::Auth::has_role($self,'admin');
     if( $self->req->method ne 'POST' ){
-        $self->stash(org => Utils::Orgs::get_org($self, $self->param('payload')));
+        $self->stash(object => Utils::Orgs::get_1($self, $self->param('payload')));
         return;
     };
 
-    my $validation = $self->validation;
-    $validation->required('name')->size(4,35);
-    $validation->required('org_type');
-    $validation->required('city');
-    $validation->optional('description','trim');
-
-    if( $validation->has_error ){
-		$self->stash(formWithError => 1);
-        return;
-    }
-
-	my $dbh = Db->new($self);
-	
-	my $record = $self->req->params->to_hash;
-	$record->{object_name} = 'organization';
-    
-	if( $dbh->update($record) ){
-		$self->stash(actionSuccess => 1);
-	} else {
-		$self->stash(internalError => 1);
-	}
-    $self->stash(org => Utils::Orgs::get_org($self, $self->param('payload')));
+    Utils::Orgs::update($self) if !Utils::Orgs::has_error($self) ;
+    $self->stash(object => Utils::Orgs::get_1($self, $self->param('payload')));
 };
 
 1;
