@@ -1,5 +1,6 @@
 % layout 'default';
 
+<!-- breadcrumb -->
 <ol class="breadcrumb">
   <li><a href="/orgs"><%= ml 'Organizations' %></a></li>
   <li class="active"><%= ml 'Edit' %></li>

@@ -2,7 +2,7 @@ package Utils::Orgs; {
 
 =encoding utf8
 =head1 NAME
-    Different initial values
+    Utils for Orgs
 =cut
 
 use 5.012000;
@@ -16,7 +16,6 @@ sub get_many{
     my $self = shift;
     my $dbh = Db->new($self);
     return $dbh->get_objects({ name => ['organization']});
-
 };
 
 sub get_1{

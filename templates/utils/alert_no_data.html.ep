@@ -1,0 +1,6 @@
+<div class="alert alert-success" role="alert">
+    <strong><%= ml('No data!') %></strong>
+</div>
+
+
+
