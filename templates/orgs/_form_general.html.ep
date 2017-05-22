@@ -1,0 +1,39 @@
+% my $_has_error = stash('formWithError') ? 1 : 0;
+
+%# CLIENT INFORMATION FORM
+%= form_for url_with->path_query => ( method => 'POST', style => 'margin-bottom: 10px;' ) => begin
+ % my $_class = $_has_error ? ' has-error' : '' ;
+  %= tag div => class => "form-group $_class" => begin
+    <label for="name"><%= ml 'Name' %></label>
+    % if ( $object ){
+     %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name'), value => $object->{name};
+     %= input_tag 'id', type=>"hidden", class=>"form-control", id=>"id", value => $object->{id} ;
+    % } else {
+     %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name');
+    % }
+  % end 
+  %= tag div => class => "form-group" => begin
+    <label for="org_type"><%= ml 'Organization type' %></label>
+    %= include 'utils/select_org_types', org_type => ( $object ? $object->{org_type} : undef );
+  % end 
+  %= tag div => class => "form-group" => begin
+    <label for="city"><%= ml 'City' %></label>
+    %= include 'utils/select_cities', city => ( $object ? $object->{city} : undef );
+  % end 
+  %= tag div => class => "form-group" => begin
+    <label for="description"><%= ml 'Description' %></label>
+    %= text_area description => ( $object ? $object->{description} : ''), (class=>'form-control');
+  % end 
+  %= tag div => class => "checkbox" => begin
+   <label>
+       % if( $object->{blocked} && $object->{blocked} eq 'on' ) {
+    %= input_tag 'blocked', type=>"checkbox", id=>"blocked", checked=>'checked' ;
+   % } else {
+    %= input_tag 'blocked', type=>"checkbox", id=>"blocked" ;
+   % }
+   <%= ml 'Blocked' %></label>
+  % end
+  <button type="submit" class="btn btn-primary"><%= ml ( $object ? 'Edit' : 'Add') %></button>
+  %= link_to ml('Back') => url_for("/orgs") => ( class => 'btn btn-default' ) ; 
+% end
+% tag pre => dumper(stash('object'));

@@ -11,6 +11,7 @@ use warnings;
 use utf8;
 
 use Db;
+use Data::Dumper;
 
 sub get_many{
     my $self = shift;
@@ -32,6 +33,7 @@ sub has_error{
     $validation->required('name')->size(4,35);
     $validation->required('org_type');
     $validation->required('city');
+    $validation->optional('blocked');
     $validation->optional('description','trim');
 
     $self->stash(formWithError => 1) if $validation->has_error ;
@@ -44,6 +46,8 @@ sub add{
 	my $dbh = Db->new($self);
 	my $new_record = $self->req->params->to_hash;
 	$new_record->{object_name} = 'organization';
+    $new_record->{blocked} = exists($new_record->{blocked})?'on':'off';
+   
 	if( $dbh->insert($new_record) ){
 		$self->redirect_to("/orgs/");
         return(0);
@@ -59,6 +63,7 @@ sub update{
    	my $dbh = Db->new($self);
     my $record = $self->req->params->to_hash;
     $record->{object_name} = 'organization';
+    $record->{blocked} = exists($record->{blocked})?'on':'off';
    
    	if( $dbh->update($record) ){
     	$self->stash(actionSuccess => 1);

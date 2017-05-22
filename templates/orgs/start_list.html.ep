@@ -1,0 +1,23 @@
+<!-- table, list of organizations -->
+% my $orgs = stash('orgs') ;
+<table class="table table-hover">
+ <thead>
+  <tr>
+   <th><%= ml 'Name' %></th>
+   <th><%= ml 'Description' %></th>
+   <th>&nbsp;</th>
+  </tr>
+ </thead>
+ <tbody>
+ <!-- iteration of orgs -->
+ % for my $org_id(reverse sort keys %{$orgs}) {
+  <tr>
+   <td><%= link_to $orgs->{$org_id}{name} => url_for("/orgs/edit/$org_id") %></td>
+   <td><%= $orgs->{$org_id}{description} %></td>
+   % my $_class = "glyphicon glyphicon-" . ($orgs->{$org_id}{blocked} && $orgs->{$org_id}{blocked} eq 'on' ? 'remove' : 'ok' ) ; 
+   <td><span class='<%= $_class %>' aria-hidden="true"></span></td>
+  </tr>
+ % }    
+ </tbody>
+</table>
+
