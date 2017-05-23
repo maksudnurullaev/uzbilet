@@ -1,17 +1,21 @@
-% my $objects = stash('opers');
 <table class="table table-hover">
  <thead>
   <tr>
    <th><%= ml 'Name' %></th>
    <th><%= ml 'Phone' %></th>
+   <th>&nbsp;</th>
   </tr>
  </thead>
  <tbody>
- <!-- iteration of orgs -->
+ <!-- iteration -->
+ % my $objects = stash('objects');
  % for my $id(reverse sort keys %{$objects}) {
+  % my $object = $objects->{$id};
   <tr>
-   <td><%= link_to $objects->{$id}{name} => url_for("/opers/edit/$id") %></td>
-   <td><%= $objects->{$id}{phone} %></td>
+   <td><%= link_to $object->{name} => url_for("/opers/edit/$id") %></td>
+   <td><%= $object->{phone} %></td>
+   % my $_class = "glyphicon glyphicon-" . ($object->{blocked} && $object->{blocked} eq 'on' ? 'remove' : 'ok') ; 
+   <td><span class='<%= $_class %>' aria-hidden="true"></span></td>
   </tr>
  % }    
  </tbody>

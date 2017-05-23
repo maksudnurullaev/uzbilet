@@ -6,9 +6,7 @@
   <li><a href="/opers/add"><%= ml 'Add' %></a></li>
 </ol>
 
-%#= tag pre => dumper(stash('opers'));
-% my $objects = stash('opers');
-% if( stash('opers') ){
+% if( stash('objects') ){
  %= include 'opers/start_list' ;
 % } else {
  %= include 'utils/alert_no_data' ;

@@ -9,33 +9,4 @@
 %= include 'utils/alert_error_dismissible' if stash('formWithError');
 %= include 'utils/alert_error_internal'    if stash('internalError');
 %= include 'utils/alert_action_success'    if stash('actionSuccess');
-% my $id  = param('payload');
-% my $object = stash('object')->{$id};
-
-%# CLIENT INFORMATION FORM
-%= form_for url_with->path_query => ( method => 'POST', style => 'margin-bottom: 10px;' ) => begin
- %= tag div => class => (validation->has_error('name')? "form-group has-error":"form-group") => begin
-   <label for="name"><%= ml 'Name' %></label>
-   %= input_tag 'name', type=>"text", class=>"form-control", id=>"name", placeholder=>ml('Name'), value => $object->{name} ;
-   %= input_tag 'id', type=>"hidden", class=>"form-control", id=>"id", value => $object->{id} ;
- % end 
- %= tag div => class => (validation->has_error('phone')? "form-group has-error":"form-group") => begin
-   <label for="phone"><%= ml 'Your phone' %></label>
-   <div class="input-group">
-     <div class="input-group-addon">+998</div>
-     %= input_tag phone => type => "number", class => 'form-control', id => "phone", placeholder => ml('Your phone'), value => $object->{phone} ;
-   </div>
- % end 
- %= tag div => class => (validation->has_error('password')? "form-group has-error":"form-group") => begin
-   <label for="password"><%= ml 'New Password' %></label>
-   %= input_tag 'password', type=>"password", class=>"form-control", id=>"password", placeholder=>ml('New Password');
- % end 
- %= tag div => class => (validation->has_error('password2')? "form-group has-error":"form-group") => begin
-   <label for="password2"><%= ml 'New Password(again)' %></label>
-   %= input_tag 'password2', type=>"password", class=>"form-control", id=>"password2", placeholder=>ml('New Password(again)') ;
- % end 
- <button type="submit" class="btn btn-primary"><%= ml 'Edit' %></button>
- %= link_to ml('Back') => url_for("/opers") => ( class => 'btn btn-default' ) ; 
-% end
-
-%#= tag pre => dumper(stash('object'));
+%= include 'opers/_form_general', object => stash('object')->{$payload};

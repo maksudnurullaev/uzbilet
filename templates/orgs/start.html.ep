@@ -7,8 +7,7 @@
 </ol>
 
 %#= tag pre => dumper(stash('orgs'));
-% my $objects = stash('orgs');
-% if( stash('orgs') ){
+% if( stash('objects') ){
  %= include 'orgs/start_list' ;
 % } else {
  %= include 'utils/alert_no_data' ;

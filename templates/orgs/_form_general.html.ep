@@ -26,7 +26,7 @@
   % end 
   %= tag div => class => "checkbox" => begin
    <label>
-       % if( $object->{blocked} && $object->{blocked} eq 'on' ) {
+    % if( $object->{blocked} && $object->{blocked} eq 'on' ) {
     %= input_tag 'blocked', type=>"checkbox", id=>"blocked", checked=>'checked' ;
    % } else {
     %= input_tag 'blocked', type=>"checkbox", id=>"blocked" ;

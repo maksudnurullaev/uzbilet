@@ -1,5 +1,4 @@
-<!-- table, list of organizations -->
-% my $orgs = stash('orgs') ;
+<!-- table, list of objectanizations -->
 <table class="table table-hover">
  <thead>
   <tr>
@@ -9,12 +8,13 @@
   </tr>
  </thead>
  <tbody>
- <!-- iteration of orgs -->
- % for my $org_id(reverse sort keys %{$orgs}) {
+ <!-- iteration -->
+ % my $objects = stash('objects') ;
+ % for my $object_id(reverse sort keys %{$objects}) {
   <tr>
-   <td><%= link_to $orgs->{$org_id}{name} => url_for("/orgs/edit/$org_id") %></td>
-   <td><%= $orgs->{$org_id}{description} %></td>
-   % my $_class = "glyphicon glyphicon-" . ($orgs->{$org_id}{blocked} && $orgs->{$org_id}{blocked} eq 'on' ? 'remove' : 'ok' ) ; 
+   <td><%= link_to $objects->{$object_id}{name} => url_for("/orgs/edit/$object_id") %></td>
+   <td><%= $objects->{$object_id}{description} %></td>
+   % my $_class = "glyphicon glyphicon-" . ($objects->{$object_id}{blocked} && $objects->{$object_id}{blocked} eq 'on' ? 'remove' : 'ok' ) ; 
    <td><span class='<%= $_class %>' aria-hidden="true"></span></td>
   </tr>
  % }    

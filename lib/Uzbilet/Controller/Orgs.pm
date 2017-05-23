@@ -9,7 +9,7 @@ sub start{
     my $self = shift;
 	return if !Utils::Auth::has_role($self,'admin');
 
-    $self->stash(orgs => Utils::Orgs::get_many($self));
+    $self->stash(objects => Utils::Orgs::get_many($self));
 };
 
 sub add{

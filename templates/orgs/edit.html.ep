@@ -10,5 +10,5 @@
 %= include 'utils/alert_error_dismissible' if $_has_error;
 %= include 'utils/alert_error_internal'    if stash('internalError');
 %= include 'utils/alert_action_success'    if stash('actionSuccess');
-%= include 'orgs/_form_general', object => (stash('object')?stash('object')->{$payload}:undef)
+%= include 'orgs/_form_general', object => stash('object')->{$payload};
 

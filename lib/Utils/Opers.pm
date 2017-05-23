@@ -30,19 +30,13 @@ sub get_1{
 
 sub has_error{
     my $self = shift;
-    my $is_password_mandatory = shift;
-    $is_password_mandatory = 1 if !defined($is_password_mandatory);
+    my $type = shift || 'new';
 
     my $validation = $self->validation;
     $validation->required('name')->size(4,35);
     $validation->required('phone')->like(q/^\d{9}$/);
 
-    warn "is_password_mandatory: $is_password_mandatory";
-    warn "Test 2: " . $self->req->param('password');
-
-    if( $is_password_mandatory || 
-            (!$is_password_mandatory &&  $self->req->param('password')) ){
-        warn "is_password_mandatory 2: $is_password_mandatory";
+    if( $type eq 'new' || ($type eq 'update' &&  $self->req->param('password')) ){
         $validation->required('password','trim')->size(4,35)->equal_to('password2');
         $validation->required('password2')->equal_to('password');
     }
@@ -56,46 +50,29 @@ sub has_error{
     return $validation->has_error;
 };
 
-sub add{
+sub create{
     my $self = shift;
-
-	my $new_record = $self->req->params->to_hash;
-	$new_record->{object_name} = 'operator';
+    my $type = shift || 'new' ;
+    my $record = $self->req->params->to_hash;
+	$record->{object_name} = 'operator';
     # Encrypt password
-    $new_record->{password} = Utils::Auth::salted_password($new_record->{password});
+    $record->{password} = Utils::Auth::salted_password($record->{password});
     # Remove unused password2
-    delete $new_record->{password2};
+    delete $record->{password2};
+    # Add blocked record
+    $record->{blocked} = exists($record->{blocked})?'on':'off';
 
 	my $dbh = Db->new($self);
-	if( $dbh->insert($new_record) ){
+    if( $type eq 'new' && $dbh->insert($record) ){
 		$self->redirect_to("/opers/");
-	} else {
-		$self->stash(internalError => 1);
-	}
-};
-
-sub update{
-    my $self = shift;
-
-    my $new_record = $self->req->params->to_hash;
-	$new_record->{object_name} = 'operator';
-    # Encrypt password if neccessary
-    if( $self->validation->param('password') ){
-        $new_record->{password} = Utils::Auth::salted_password($new_record->{password}) if $self->validation->param('password');
-    } else {
-        delete $new_record->{password};
-    }
-    # Remove unused password2
-    delete $new_record->{password2};
-   
-   	my $dbh = Db->new($self);
-   	if( $dbh->update($new_record) ){
+    } elsif ( $type eq 'update' && $dbh->update($record) ) {
     	$self->stash(actionSuccess => 1);
         return(0);
     } else {
    		$self->stash(internalError => 1);
         return(1);
    	}
+
 };
 
 # END OF PACKAGE
