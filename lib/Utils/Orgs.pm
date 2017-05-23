@@ -40,38 +40,25 @@ sub has_error{
     return $validation->has_error;
 };
 
-sub add{
+sub create{
     my $self = shift;
+    my $type = shift || 'new' ;
 
-	my $dbh = Db->new($self);
-	my $new_record = $self->req->params->to_hash;
-	$new_record->{object_name} = 'organization';
-    $new_record->{blocked} = exists($new_record->{blocked})?'on':'off';
-   
-	if( $dbh->insert($new_record) ){
-		$self->redirect_to("/orgs/");
-        return(0);
-	} else {
-		$self->stash(internalError => 1);
-        return(1);
-	}
-};
-
-sub update{
-    my $self = shift;
-
-   	my $dbh = Db->new($self);
+       my $dbh = Db->new($self);
     my $record = $self->req->params->to_hash;
     $record->{object_name} = 'organization';
     $record->{blocked} = exists($record->{blocked})?'on':'off';
    
-   	if( $dbh->update($record) ){
-    	$self->stash(actionSuccess => 1);
+    if( $type eq 'new' && $dbh->insert($record) ){
+       $self->redirect_to("/orgs/");
+       return(0);
+    } elsif ( $type eq 'update' && $dbh->update($record) ){
+        $self->stash(actionSuccess => 1);
         return(0);
     } else {
-   		$self->stash(internalError => 1);
+        $self->stash(internalError => 1);
         return(1);
-   	}
+    }
 };
 
 # END OF PACKAGE

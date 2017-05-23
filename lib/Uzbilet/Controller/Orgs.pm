@@ -16,14 +16,14 @@ sub add{
     my $self = shift;
 	return if !Utils::Auth::has_role($self,'admin');
 
-    Utils::Orgs::add($self) if $self->req->method eq 'POST' && !Utils::Orgs::has_error($self);
+    Utils::Orgs::create($self) if $self->req->method eq 'POST' && !Utils::Orgs::has_error($self);
 };
   
 sub edit{
     my $self = shift;
     return if !Utils::Auth::has_role($self,'admin');
 
-    Utils::Orgs::update($self) if $self->req->method eq 'POST' && !Utils::Orgs::has_error($self);
+    Utils::Orgs::create($self,'update') if $self->req->method eq 'POST' && !Utils::Orgs::has_error($self);
     $self->stash(object => Utils::Orgs::get_1($self, $self->param('payload')));
 };
 

@@ -33,7 +33,6 @@
    % }
    <%= ml 'Blocked' %></label>
   % end
-  <button type="submit" class="btn btn-primary"><%= ml ( $object ? 'Edit' : 'Add') %></button>
+  <button type="submit" class="btn btn-primary"><%= ml (ucfirst($action)) %></button>
   %= link_to ml('Back') => url_for("/orgs") => ( class => 'btn btn-default' ) ; 
 % end
-% tag pre => dumper(stash('object'));
